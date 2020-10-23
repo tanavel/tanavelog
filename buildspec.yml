@@ -1,0 +1,22 @@
+version: 0.2
+phases:
+  install:
+    runtime-versions:
+      php: 7.4
+    commands:
+      - echo install phase start.
+  pre_build:
+    commands:
+      - echo pre_build phase start.
+  build:
+    commands:
+      - echo build phase start.
+      - composer install -d bedrock
+      # - composer install --no-dev --prefer-dist --no-interaction --optimize-autoloader --no-progress --no-suggest
+  post_build:
+    commands:
+      - echo post_build phase start.
+artifacts:
+  files:
+    - ./**/*
+  base-directory: bedrock
