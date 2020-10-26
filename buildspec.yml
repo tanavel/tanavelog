@@ -8,15 +8,19 @@ phases:
   pre_build:
     commands:
       - echo pre_build phase start.
+      # - IMAGE_TAG=$CODEBUILD_RESOLVED_SOURCE_VERSION
+      # - REPOSITORY_URI=********.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/restful-api
+
   build:
     commands:
       - echo build phase start.
       - composer install -d bedrock
       # - composer install --no-dev --prefer-dist --no-interaction --optimize-autoloader --no-progress --no-suggest
+      # - docker build -t $REPOSITORY_URI:$IMAGE_TAG .
+      # - docker push $REPOSITORY_URI:$IMAGE_TAG
   post_build:
     commands:
       - echo post_build phase start.
 artifacts:
   files:
     - ./**/*
-  base-directory: bedrock
